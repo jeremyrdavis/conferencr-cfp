@@ -1,9 +1,8 @@
 package io.conferencr.infrastructure;
 
+import io.conferencr.domain.Paper;
 import io.conferencr.domain.SessionAbstract;
 import io.conferencr.domain.SessionAbstractJson;
-import io.conferencr.domain.Speaker;
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import org.slf4j.Logger;
 
 import javax.transaction.Transactional;
@@ -32,14 +31,7 @@ public class SessionAbstractResource {
 
         LOGGER.debug("Adding {}", sessionAbstractJson);
 
-        PanacheQuery<Speaker> query = Speaker.find("email = ?1", sessionAbstractJson.speakerEmail);
-        Speaker speaker = query.firstResult();
-        SessionAbstract sessionAbstract = new SessionAbstract();
-        sessionAbstract.setBody(sessionAbstractJson.body);
-        sessionAbstract.setSlug(sessionAbstractJson.slug);
-        sessionAbstract.setTitle(sessionAbstractJson.title);
-        sessionAbstract.setSpeaker(speaker);
-        sessionAbstract.persist();
-        return Response.created(URI.create("/" + sessionAbstract.id)).entity(sessionAbstract).build();
+        Paper paper = Paper.createFromSessionAbstractJSON(sessionAbstractJson);
+        return Response.created(URI.create("/" + paper.getSessionAbstract().id)).entity(paper.getSessionAbstract()).build();
     }
 }
