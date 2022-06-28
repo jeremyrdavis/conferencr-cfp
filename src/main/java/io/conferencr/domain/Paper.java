@@ -1,10 +1,14 @@
 package io.conferencr.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.transaction.Transactional;
 
 // Aggregate for Papers
 public class Paper {
 
+    @JsonIgnore
     private SessionAbstract sessionAbstract;
 
     private Paper(SessionAbstract sessionAbstract) {
