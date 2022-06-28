@@ -1,5 +1,6 @@
 package io.conferencr.infrastructure;
 
+import io.conferencr.domain.Paper;
 import io.conferencr.domain.SessionAbstract;
 import io.conferencr.domain.UpVoteJson;
 import org.slf4j.Logger;
@@ -23,6 +24,8 @@ public class VotingResource {
     public Response upVote(final UpVoteJson upVoteJson) {
 
         LOGGER.debug("up vote received: {}", upVoteJson);
+
+        Paper.upVote(upVoteJson);
 
         SessionAbstract sessionAbstract = SessionAbstract.findById(upVoteJson.sessionAbstractId);
         sessionAbstract.upVote();

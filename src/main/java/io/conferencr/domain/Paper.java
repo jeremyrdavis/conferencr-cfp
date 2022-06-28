@@ -7,6 +7,10 @@ public class Paper {
 
     private SessionAbstract sessionAbstract;
 
+    private Paper(SessionAbstract sessionAbstract) {
+        this.sessionAbstract = sessionAbstract;
+    }
+
     // Assumes that Speaker is already persisted and can be retrieved by email
     @Transactional
     public static Paper createFromSessionAbstractJSON(final SessionAbstractJson sessionAbstractJson) {
@@ -23,9 +27,31 @@ public class Paper {
         return new Paper(sessionAbstract);
     }
 
-    private Paper(SessionAbstract sessionAbstract) {
-        this.sessionAbstract = sessionAbstract;
+    @Transactional
+    public static void upVote(UpVoteJson upVoteJson) {
+
+        SessionAbstract sessionAbstract = SessionAbstract.findById(upVoteJson.sessionAbstractId);
+        Reviewer reviewer = Reviewer.findById(upVoteJson.reviewerId);
+        UpVote upVote = new UpVote(sessionAbstract, reviewer);
+        upVote.persist();
     }
+
+    public String getTitle() {
+        return sessionAbstract.getTitle();
+    }
+
+    public String getSlug() {
+        return sessionAbstract.getSlug();
+    }
+
+    public String getBody() {
+        return sessionAbstract.getBody();
+    }
+
+    public Speaker getSpeaker() {
+        return sessionAbstract.getSpeaker();
+    }
+
 
     @Override
     public String toString() {
@@ -52,4 +78,5 @@ public class Paper {
     public SessionAbstract getSessionAbstract() {
         return sessionAbstract;
     }
+
 }
