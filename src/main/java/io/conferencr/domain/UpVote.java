@@ -3,15 +3,18 @@ package io.conferencr.domain;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class UpVote extends PanacheEntity {
 
     @ManyToOne
+    @JoinColumn(name="session_abstract_id", nullable=false)
     SessionAbstract sessionAbstract;
 
     @ManyToOne
+    @JoinColumn(name="reviewer_id", nullable=false)
     Reviewer reviewer;
 
     protected UpVote(SessionAbstract sessionAbstract, Reviewer reviewer) {

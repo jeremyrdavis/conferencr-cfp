@@ -3,10 +3,9 @@ package io.conferencr.domain;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 public class SessionAbstract extends PanacheEntity {
@@ -21,7 +20,8 @@ public class SessionAbstract extends PanacheEntity {
     @ManyToOne
     private Speaker speaker;
 
-    private int votes;
+    @OneToMany(mappedBy = "sessionAbstract", fetch = FetchType.EAGER)
+    private Collection<UpVote> votes;
 
     public SessionAbstract(String title, String slug, String body, Speaker speaker) {
         this.title = title;
@@ -39,8 +39,11 @@ public class SessionAbstract extends PanacheEntity {
     public SessionAbstract() {
     }
 
-    public void upVote() {
-        this.votes++;
+    public void addUpVote(UpVote upVote) {
+        if (this.votes == null) {
+            this.votes = new ArrayList<>(1);
+        }
+        this.votes.add(upVote);
     }
 
     @Override
@@ -80,7 +83,7 @@ public class SessionAbstract extends PanacheEntity {
         return title;
     }
 
-    public void setTitle(String title) {
+    protected void setTitle(String title) {
         this.title = title;
     }
 
@@ -88,7 +91,7 @@ public class SessionAbstract extends PanacheEntity {
         return slug;
     }
 
-    public void setSlug(String slug) {
+    protected void setSlug(String slug) {
         this.slug = slug;
     }
 
@@ -96,7 +99,7 @@ public class SessionAbstract extends PanacheEntity {
         return body;
     }
 
-    public void setBody(String body) {
+    protected void setBody(String body) {
         this.body = body;
     }
 
@@ -104,13 +107,16 @@ public class SessionAbstract extends PanacheEntity {
         return speaker;
     }
 
-    public void setSpeaker(Speaker speaker) {
+    protected void setSpeaker(Speaker speaker) {
         this.speaker = speaker;
     }
 
-    public int getVotes() {
+    public Collection<UpVote> getVotes() {
         return votes;
     }
 
+    protected void setVotes(Collection<UpVote> votes) {
+        this.votes = votes;
+    }
 
 }

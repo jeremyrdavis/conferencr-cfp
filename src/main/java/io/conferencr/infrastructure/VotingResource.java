@@ -25,15 +25,11 @@ public class VotingResource {
 
         LOGGER.debug("up vote received: {}", upVoteJson);
 
-        Paper.upVote(upVoteJson);
+        Paper paper = Paper.upVote(upVoteJson);
 
-        SessionAbstract sessionAbstract = SessionAbstract.findById(upVoteJson.sessionAbstractId);
-        sessionAbstract.upVote();
-        sessionAbstract.persist();
+        LOGGER.debug("Paper updated");
 
-        LOGGER.debug("session abstract updated");
-
-        return Response.ok().entity(sessionAbstract).build();
+        return Response.ok().entity(paper).build();
     }
 
 }

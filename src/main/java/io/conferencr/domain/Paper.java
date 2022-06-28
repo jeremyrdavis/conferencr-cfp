@@ -28,12 +28,14 @@ public class Paper {
     }
 
     @Transactional
-    public static void upVote(UpVoteJson upVoteJson) {
+    public static Paper upVote(UpVoteJson upVoteJson) {
 
         SessionAbstract sessionAbstract = SessionAbstract.findById(upVoteJson.sessionAbstractId);
         Reviewer reviewer = Reviewer.findById(upVoteJson.reviewerId);
         UpVote upVote = new UpVote(sessionAbstract, reviewer);
-        upVote.persist();
+        sessionAbstract.addUpVote(upVote);
+        sessionAbstract.persistAndFlush();
+        return new Paper(sessionAbstract);
     }
 
     public String getTitle() {
@@ -50,6 +52,10 @@ public class Paper {
 
     public Speaker getSpeaker() {
         return sessionAbstract.getSpeaker();
+    }
+
+    public int getVotes() {
+        return sessionAbstract.getVotes().size();
     }
 
 
