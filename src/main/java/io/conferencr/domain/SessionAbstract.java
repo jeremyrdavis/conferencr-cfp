@@ -1,4 +1,4 @@
-package io.conferencer.domain;
+package io.conferencr.domain;
 
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
@@ -21,6 +21,8 @@ public class SessionAbstract extends PanacheEntity {
     @ManyToOne
     private Speaker speaker;
 
+    private int votes;
+
     public SessionAbstract(String title, String slug, String body, Speaker speaker) {
         this.title = title;
         this.slug = slug;
@@ -35,6 +37,10 @@ public class SessionAbstract extends PanacheEntity {
     }
 
     public SessionAbstract() {
+    }
+
+    public void upVote() {
+        this.votes++;
     }
 
     @Override
@@ -101,4 +107,10 @@ public class SessionAbstract extends PanacheEntity {
     public void setSpeaker(Speaker speaker) {
         this.speaker = speaker;
     }
+
+    public int getVotes() {
+        return votes;
+    }
+
+
 }

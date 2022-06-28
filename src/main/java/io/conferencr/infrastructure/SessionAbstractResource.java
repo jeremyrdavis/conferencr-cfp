@@ -1,8 +1,8 @@
-package io.conferencer.infrastructure;
+package io.conferencr.infrastructure;
 
-import io.conferencer.domain.SessionAbstract;
-import io.conferencer.domain.SessionAbstractJson;
-import io.conferencer.domain.Speaker;
+import io.conferencr.domain.SessionAbstract;
+import io.conferencr.domain.SessionAbstractJson;
+import io.conferencr.domain.Speaker;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import org.slf4j.Logger;
 

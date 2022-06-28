@@ -1,4 +1,4 @@
-package io.conferencer;
+package io.conferencr;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 

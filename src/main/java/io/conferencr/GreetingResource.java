@@ -1,4 +1,4 @@
-package io.conferencer;
+package io.conferencr;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

@@ -1,6 +1,6 @@
-package io.conferencer.infrastructure;
+package io.conferencr.infrastructure;
 
-import io.conferencer.domain.Speaker;
+import io.conferencr.domain.Speaker;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.GET;

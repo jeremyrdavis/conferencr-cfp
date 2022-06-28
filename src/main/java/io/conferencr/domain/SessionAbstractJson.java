@@ -1,4 +1,4 @@
-package io.conferencer.domain;
+package io.conferencr.domain;
 
 public final class SessionAbstractJson {
 

@@ -1,4 +1,4 @@
-package io.conferencer.infrastructure;
+package io.conferencr.infrastructure;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
