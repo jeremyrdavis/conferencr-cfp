@@ -24,6 +24,11 @@ public class Speaker extends PanacheEntity {
     public Speaker() {
     }
 
+    public static Speaker findByEmail(String speakerEmail) {
+
+        return find("email", speakerEmail).firstResult();
+    }
+
     @Override
     public String toString() {
         return "Speaker{" +
