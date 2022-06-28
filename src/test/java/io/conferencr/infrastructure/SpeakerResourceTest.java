@@ -15,13 +15,13 @@ public class SpeakerResourceTest {
     @Test @Order(1)
     public void testCreatingSpeaker() {
 
-        Speaker speakerToCreate = new Speaker("my@email.com", "Lemmy", "Kilminster");
+        Speaker speakerToCreate = new Speaker("pete@buzzcocks.com", "Pete", "Shelley");
 
         String requestBody = """
                 {
-                    "email":"my@email.com",
-                    "firstName":"Lemmy",
-                    "lastName":"Kilminster"
+                    "email":"pete@buzzcocks.com",
+                    "firstName":"Pete",
+                    "lastName":"Shelley"
                 }
                 """;
         Response response =
