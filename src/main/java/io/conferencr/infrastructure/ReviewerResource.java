@@ -9,6 +9,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
+import java.net.URI;
+
 import static org.slf4j.LoggerFactory.getLogger;
 
 @Path("/reviewers")
@@ -22,6 +24,6 @@ public class ReviewerResource {
         LOGGER.debug("reviewerJSON: {}", reviewerJSON);
         Reviewer reviewer = new Reviewer(reviewerJSON.email);
         reviewer.persist();
-        return Response.ok().entity(reviewer).build();
+        return Response.created(URI.create("/" + reviewer.id)).entity(reviewer).build();
     }
 }
