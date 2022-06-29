@@ -1,8 +1,7 @@
 package io.conferencr.infrastructure;
 
 import io.conferencr.domain.Paper;
-import io.conferencr.domain.SessionAbstract;
-import io.conferencr.domain.UpVoteJson;
+import io.conferencr.domain.valueobjects.UpVoteJson;
 import org.slf4j.Logger;
 
 import javax.transaction.Transactional;

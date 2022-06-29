@@ -1,7 +1,8 @@
 package io.conferencr.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import io.conferencr.domain.valueobjects.SessionAbstractJson;
+import io.conferencr.domain.valueobjects.UpVoteJson;
 
 import javax.transaction.Transactional;
 

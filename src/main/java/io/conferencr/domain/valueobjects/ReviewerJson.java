@@ -1,12 +1,12 @@
-package io.conferencr.domain;
+package io.conferencr.domain.valueobjects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public final class ReviewerJSON {
+public final class ReviewerJson {
 
     public String email;
 
-    public ReviewerJSON(@JsonProperty("email") String email) {
+    public ReviewerJson(@JsonProperty("email") String email) {
         this.email = email;
     }
 
@@ -22,7 +22,7 @@ public final class ReviewerJSON {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ReviewerJSON that = (ReviewerJSON) o;
+        ReviewerJson that = (ReviewerJson) o;
 
         return email != null ? email.equals(that.email) : that.email == null;
     }

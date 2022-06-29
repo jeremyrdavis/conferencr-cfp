@@ -1,5 +1,6 @@
 package io.conferencr.domain;
 
+import io.conferencr.domain.valueobjects.SessionAbstractJson;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
