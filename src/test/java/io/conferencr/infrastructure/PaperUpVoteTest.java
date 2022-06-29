@@ -15,7 +15,7 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @QuarkusTest
-public class SessionAbstractVoteTest {
+public class PaperUpVoteTest {
 
     static Long sessionAbstractId;
 

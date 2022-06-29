@@ -17,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @QuarkusTest
-public class SessionAbstractsWithSameSpeakerTest {
+public class PapersWithSameSpeakerTest {
 
-    private static final Logger LOGGER = getLogger(SessionAbstractsWithSameSpeakerTest.class);
+    private static final Logger LOGGER = getLogger(PapersWithSameSpeakerTest.class);
 
     static final String URL_UNDER_TEST = "/papers";
 
