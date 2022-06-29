@@ -21,19 +21,23 @@ public class SessionAbstractVoteTest {
 
     static Long reviewerId;
 
-    @BeforeAll @Transactional
+    static final String title = "A presentation";
+
+    static final String slug = "This is going to be a great presentation";
+
+    static final String body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus mi, malesuada non neque sed, pretium vestibulum dui. Etiam convallis cursus ullamcorper. Proin ut ex sit amet lacus laoreet gravida. Donec convallis sit amet dolor sed rutrum. Maecenas eu elit ac tellus sollicitudin finibus id at nisi. Ut nunc augue, vehicula at rutrum vitae, vestibulum quis quam. Aliquam vel augue id felis pellentesque aliquam. Vivamus tempus ex quis ultrices accumsan. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent hendrerit ipsum tincidunt tortor tempus tincidunt. Nunc fringilla diam at nunc porttitor, a imperdiet tortor suscipit. Cras scelerisque enim eget cursus gravida. Sed rhoncus risus ut ante dapibus lacinia. Quisque nisi turpis, porttitor sed purus ut, sodales placerat nibh. Suspendisse in purus quis eros porta commodo at in dui.%n                     Quisque tempus porttitor tellus quis pellentesque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas neque sem, placerat a ullamcorper a, tristique eget ante. Cras a lorem eros. Morbi hendrerit, leo sit amet ultrices viverra, tellus dolor pellentesque ligula, et pulvinar enim nisl a neque. Cras pharetra pretium est quis placerat. Mauris a cursus erat, sit amet tincidunt dolor. Etiam sit amet suscipit tortor. Sed.";
+
+    @BeforeAll
+    @Transactional
     public static void setUp() {
 
         Speaker speaker = new Speaker("dduck@disney.com", "Donald", "Duck");
         speaker.persist();
         SessionAbstract sessionAbstract = new SessionAbstract(
-                "A presentation",
-                "This is going to be a great presentation",
-                """
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus mi, malesuada non neque sed, pretium vestibulum dui. Etiam convallis cursus ullamcorper. Proin ut ex sit amet lacus laoreet gravida. Donec convallis sit amet dolor sed rutrum. Maecenas eu elit ac tellus sollicitudin finibus id at nisi. Ut nunc augue, vehicula at rutrum vitae, vestibulum quis quam. Aliquam vel augue id felis pellentesque aliquam. Vivamus tempus ex quis ultrices accumsan. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent hendrerit ipsum tincidunt tortor tempus tincidunt. Nunc fringilla diam at nunc porttitor, a imperdiet tortor suscipit. Cras scelerisque enim eget cursus gravida. Sed rhoncus risus ut ante dapibus lacinia. Quisque nisi turpis, porttitor sed purus ut, sodales placerat nibh. Suspendisse in purus quis eros porta commodo at in dui.
-                     Quisque tempus porttitor tellus quis pellentesque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas neque sem, placerat a ullamcorper a, tristique eget ante. Cras a lorem eros. Morbi hendrerit, leo sit amet ultrices viverra, tellus dolor pellentesque ligula, et pulvinar enim nisl a neque. Cras pharetra pretium est quis placerat. Mauris a cursus erat, sit amet tincidunt dolor. Etiam sit amet suscipit tortor. Sed.
-                     """,
-                     speaker);
+                title,
+                slug,
+                body,
+                speaker);
         sessionAbstract.persist();
         sessionAbstractId = sessionAbstract.id;
         Reviewer reviewer = new Reviewer("mickey.mouse@steamboatwillie.com");
@@ -52,11 +56,13 @@ public class SessionAbstractVoteTest {
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
                         .and()
-                         .body(upVoteJson)
+                        .body(upVoteJson)
                         .when().post("/vote")
                         .then()
                         .extract().response();
 
         assertEquals(200, response.statusCode());
+        assertEquals(1, response.jsonPath().getString("votes"));
+
     }
 }

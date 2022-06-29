@@ -5,12 +5,16 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.slf4j.LoggerFactory.getLogger;
 
 @QuarkusTest
 public class SpeakerResourceTest {
+
+    private static final Logger LOGGER = getLogger(SpeakerResourceTest.class);
 
     @Test @Order(1)
     public void testCreatingSpeaker() {
@@ -19,11 +23,12 @@ public class SpeakerResourceTest {
 
         String requestBody = """
                 {
-                    "email":"pete@buzzcocks.com",
-                    "firstName":"Pete",
-                    "lastName":"Shelley"
+                    "email":"%s",
+                    "firstName":"%s",
+                    "lastName":"%s"
                 }
-                """;
+                """.formatted(speakerToCreate.getEmail(), speakerToCreate.getFirstName(), speakerToCreate.getLastName());
+
         Response response =
                 given()
                         .header("Content-Type", "application/json")
@@ -50,6 +55,8 @@ public class SpeakerResourceTest {
                 .when().get("/speakers")
                 .then()
                 .extract().response();
+
+        LOGGER.debug(response.asPrettyString());
 
         assertEquals(200, response.statusCode());
 
