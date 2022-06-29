@@ -3,7 +3,7 @@ package io.conferencr.infrastructure;
 import io.conferencr.domain.Reviewer;
 import io.conferencr.domain.SessionAbstract;
 import io.conferencr.domain.Speaker;
-import io.conferencr.domain.valueobjects.UpVoteJson;
+import io.conferencr.domain.valueobjects.UpVoteValueObject;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
@@ -49,7 +49,7 @@ public class SessionAbstractVoteTest {
     @Transactional
     public void testUpvote() {
 
-        UpVoteJson upVoteJson = new UpVoteJson(sessionAbstractId, reviewerId);
+        UpVoteValueObject upVoteJson = new UpVoteValueObject(sessionAbstractId, reviewerId);
 
         Response response =
                 given()

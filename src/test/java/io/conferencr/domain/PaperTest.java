@@ -1,6 +1,6 @@
 package io.conferencr.domain;
 
-import io.conferencr.domain.valueobjects.SessionAbstractJson;
+import io.conferencr.domain.valueobjects.SessionAbstractValueObject;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -64,7 +64,7 @@ public class PaperTest {
     @Test
     public void testCreateFromSessionAbstract() {
 
-        SessionAbstractJson sessionAbstractJSON = new SessionAbstractJson(SESSION_TITLE, SESSION_SLUG, SESSION_BODY, speaker.getEmail());
+        SessionAbstractValueObject sessionAbstractJSON = new SessionAbstractValueObject(SESSION_TITLE, SESSION_SLUG, SESSION_BODY, speaker.getEmail());
         Paper paper = Paper.createFromSessionAbstractJSON(sessionAbstractJSON);
         assertNotNull(paper);
         assertEquals(SESSION_TITLE, paper.getTitle());

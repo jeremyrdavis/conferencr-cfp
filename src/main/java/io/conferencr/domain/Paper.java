@@ -1,8 +1,8 @@
 package io.conferencr.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.conferencr.domain.valueobjects.SessionAbstractJson;
-import io.conferencr.domain.valueobjects.UpVoteJson;
+import io.conferencr.domain.valueobjects.SessionAbstractValueObject;
+import io.conferencr.domain.valueobjects.UpVoteValueObject;
 
 import javax.transaction.Transactional;
 
@@ -18,7 +18,7 @@ public class Paper {
 
     // Assumes that Speaker is already persisted and can be retrieved by email
     @Transactional
-    public static Paper createFromSessionAbstractJSON(final SessionAbstractJson sessionAbstractJson) {
+    public static Paper createFromSessionAbstractJSON(final SessionAbstractValueObject sessionAbstractJson) {
 
         Speaker speaker = Speaker.findByEmail(sessionAbstractJson.speakerEmail);
 
@@ -33,7 +33,7 @@ public class Paper {
     }
 
     @Transactional
-    public static Paper upVote(UpVoteJson upVoteJson) {
+    public static Paper upVote(UpVoteValueObject upVoteJson) {
 
         SessionAbstract sessionAbstract = SessionAbstract.findById(upVoteJson.sessionAbstractId);
         Reviewer reviewer = Reviewer.findById(upVoteJson.reviewerId);

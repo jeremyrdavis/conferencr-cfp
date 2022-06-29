@@ -1,6 +1,6 @@
 package io.conferencr.domain.valueobjects;
 
-public final class SessionAbstractJson {
+public final class SessionAbstractValueObject {
 
     public String title;
 
@@ -10,7 +10,7 @@ public final class SessionAbstractJson {
 
     public String speakerEmail;
 
-    public SessionAbstractJson(String title, String slug, String body, String speakerEmail) {
+    public SessionAbstractValueObject(String title, String slug, String body, String speakerEmail) {
         this.title = title;
         this.slug = slug;
         this.body = body;
@@ -32,7 +32,7 @@ public final class SessionAbstractJson {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        SessionAbstractJson that = (SessionAbstractJson) o;
+        SessionAbstractValueObject that = (SessionAbstractValueObject) o;
 
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (slug != null ? !slug.equals(that.slug) : that.slug != null) return false;

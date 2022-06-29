@@ -21,6 +21,8 @@ public class SessionAbstractResourceTest {
 
     private static final Logger LOGGER = getLogger(SessionAbstractResourceTest.class);
 
+    static final String URL_UNDER_TEST = "/papers";
+
     static Speaker speaker = new Speaker("lemmy@motorhead.com", "Lemmy", "Kilminster");
 
     @BeforeAll @Transactional
@@ -34,7 +36,7 @@ public class SessionAbstractResourceTest {
         Response response = given()
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
-                .when().get("/abstracts")
+                .when().get(URL_UNDER_TEST)
                 .then()
                 .extract().response();
 
@@ -67,7 +69,7 @@ public class SessionAbstractResourceTest {
                     .header("Accept", "application/json")
                     .and()
                     .body(requestBody)
-                .when().post("/abstracts")
+                .when().post(URL_UNDER_TEST)
                 .then()
                 .extract().response();
 

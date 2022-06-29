@@ -1,12 +1,12 @@
 package io.conferencr.domain.valueobjects;
 
-public final class UpVoteJson {
+public final class UpVoteValueObject {
 
     public Long sessionAbstractId;
 
     public Long reviewerId;
 
-    public UpVoteJson(Long sessionAbstractId, Long reviewerId) {
+    public UpVoteValueObject(Long sessionAbstractId, Long reviewerId) {
 
         this.sessionAbstractId = sessionAbstractId;
         this.reviewerId = reviewerId;
@@ -25,7 +25,7 @@ public final class UpVoteJson {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UpVoteJson upVoteJson = (UpVoteJson) o;
+        UpVoteValueObject upVoteJson = (UpVoteValueObject) o;
 
         if (sessionAbstractId != null ? !sessionAbstractId.equals(upVoteJson.sessionAbstractId) : upVoteJson.sessionAbstractId != null)
             return false;

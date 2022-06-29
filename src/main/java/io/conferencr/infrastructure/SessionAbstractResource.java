@@ -2,7 +2,7 @@ package io.conferencr.infrastructure;
 
 import io.conferencr.domain.Paper;
 import io.conferencr.domain.SessionAbstract;
-import io.conferencr.domain.valueobjects.SessionAbstractJson;
+import io.conferencr.domain.valueobjects.SessionAbstractValueObject;
 import org.slf4j.Logger;
 
 import javax.transaction.Transactional;
@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-@Path("/abstracts")
+@Path("/papers")
 @Produces(MediaType.APPLICATION_JSON) @Consumes(MediaType.APPLICATION_JSON)
 public class SessionAbstractResource {
 
@@ -27,7 +27,7 @@ public class SessionAbstractResource {
         return Response.ok().entity(sessionAbstracts).build();
     }
     @POST@Transactional
-    public Response addAbstract(final SessionAbstractJson sessionAbstractJson) {
+    public Response addAbstract(final SessionAbstractValueObject sessionAbstractJson) {
 
         LOGGER.debug("Adding {}", sessionAbstractJson);
 

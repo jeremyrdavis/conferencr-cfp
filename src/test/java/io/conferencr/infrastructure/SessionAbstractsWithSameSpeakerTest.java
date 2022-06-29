@@ -21,6 +21,8 @@ public class SessionAbstractsWithSameSpeakerTest {
 
     private static final Logger LOGGER = getLogger(SessionAbstractsWithSameSpeakerTest.class);
 
+    static final String URL_UNDER_TEST = "/papers";
+
     static Speaker speaker;
 
     @BeforeAll @Transactional
@@ -56,7 +58,7 @@ public class SessionAbstractsWithSameSpeakerTest {
                         .header("Accept", "application/json")
                         .and()
                         .body(requestBody)
-                        .when().post("/abstracts")
+                        .when().post(URL_UNDER_TEST)
                         .then()
                         .extract().response();
 
@@ -89,7 +91,7 @@ public class SessionAbstractsWithSameSpeakerTest {
                         .header("Accept", "application/json")
                         .and()
                         .body(requestBody)
-                        .when().post("/abstracts")
+                        .when().post(URL_UNDER_TEST)
                         .then()
                         .extract().response();
 

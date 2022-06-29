@@ -1,7 +1,7 @@
 package io.conferencr.infrastructure;
 
 import io.conferencr.domain.Reviewer;
-import io.conferencr.domain.valueobjects.ReviewerJson;
+import io.conferencr.domain.valueobjects.ReviewerValueObject;
 import org.slf4j.Logger;
 
 import javax.transaction.Transactional;
@@ -19,7 +19,7 @@ public class ReviewerResource {
     private static final Logger LOGGER = getLogger(ReviewerResource.class);
 
     @POST @Transactional
-    public Response addReviewer(final ReviewerJson reviewerJSON) {
+    public Response addReviewer(final ReviewerValueObject reviewerJSON) {
 
         LOGGER.debug("reviewerJSON: {}", reviewerJSON);
         Reviewer reviewer = new Reviewer(reviewerJSON.email);
