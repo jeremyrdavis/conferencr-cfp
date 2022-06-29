@@ -62,7 +62,7 @@ public class SessionAbstractVoteTest {
                         .extract().response();
 
         assertEquals(200, response.statusCode());
-        assertEquals(1, response.jsonPath().getString("votes"));
+        assertEquals(1, response.jsonPath().getInt("votes"));
 
     }
 }
