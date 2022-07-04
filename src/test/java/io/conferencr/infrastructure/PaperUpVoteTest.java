@@ -5,6 +5,7 @@ import io.conferencr.domain.valueobjects.UpVoteValueObject;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
@@ -32,17 +33,20 @@ public class PaperUpVoteTest {
     @Inject
     PaperRepository paperRepository;
 
-    @BeforeAll
+    @BeforeEach
     @Transactional
     public void setUp() {
 
-        Speaker speaker = new Speaker("dduck@disney.com", "Donald", "Duck");
-        speakerRepository.persist(speaker);
+        Speaker daffyDuck = speakerRepository.findByEmail("dduck@disney.com");
+        if (daffyDuck == null) {
+            daffyDuck = new Speaker("dduck@disney.com", "Donald", "Duck");
+            speakerRepository.persist(daffyDuck);
+        }
         Paper paper = new Paper(
                 title,
                 slug,
                 body,
-                speaker);
+                daffyDuck);
         paperRepository.persist(paper);
         paperId = paper.id;
         Reviewer reviewer = new Reviewer("mickey.mouse@steamboatwillie.com");

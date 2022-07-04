@@ -5,6 +5,7 @@ import io.conferencr.domain.PaperRepository;
 import io.conferencr.domain.valueobjects.UpVoteValueObject;
 import org.slf4j.Logger;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -20,6 +21,7 @@ public class VotingResource {
 
     private static final Logger LOGGER = getLogger(VotingResource.class);
 
+    @Inject
     PaperRepository paperRepository;
 
     @POST@Transactional
