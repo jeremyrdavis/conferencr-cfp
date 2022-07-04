@@ -35,9 +35,15 @@ public class PapersWithSameSpeakerTest {
     @Transactional
     public void setUp() {
 
-        speaker = new Speaker("howard@buzzcocks.com", "Howard", "Devoto");
-        speakerRepository.persist(speaker);
-        LOGGER.info("persisted {}", speaker);
+        Speaker howardDevoto = speakerRepository.findByEmail("howard@buzzcocks.com");
+        if (howardDevoto == null) {
+            speaker = new Speaker("howard@buzzcocks.com", "Howard", "Devoto");
+            speakerRepository.persist(speaker);
+            LOGGER.info("persisted {}", speaker);
+        }else {
+            LOGGER.debug("speaker already exists");
+        }
+
     }
 
 
