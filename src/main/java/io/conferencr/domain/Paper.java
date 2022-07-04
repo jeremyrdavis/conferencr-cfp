@@ -1,73 +1,85 @@
 package io.conferencr.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.conferencr.domain.valueobjects.SessionAbstractValueObject;
-import io.conferencr.domain.valueobjects.UpVoteValueObject;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
-import javax.transaction.Transactional;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 // Aggregate for Papers
-public class Paper {
+@Entity
+public class Paper extends PanacheEntity {
 
-    @JsonIgnore
-    private SessionAbstract sessionAbstract;
+    private String title;
 
-    private Paper(SessionAbstract sessionAbstract) {
-        this.sessionAbstract = sessionAbstract;
+    private String slug;
+
+    @Lob
+    @Column(name = "ABSTRACT_BODY", length = 500)
+    private String body;
+
+    @ManyToOne
+    private Speaker speaker;
+
+    @OneToMany(mappedBy = "paper", fetch = FetchType.EAGER)
+    private Collection<UpVote> votes;
+
+    public Paper() {
     }
 
-    // Assumes that Speaker is already persisted and can be retrieved by email
-    @Transactional
-    public static Paper createFromSessionAbstractJSON(final SessionAbstractValueObject sessionAbstractJson) {
-
-        Speaker speaker = Speaker.findByEmail(sessionAbstractJson.speakerEmail);
-
-        SessionAbstract sessionAbstract = new SessionAbstract(
-                sessionAbstractJson.title,
-                sessionAbstractJson.slug,
-                sessionAbstractJson.body,
-                speaker);
-
-        sessionAbstract.persist();
-        return new Paper(sessionAbstract);
+    public Paper(String title, String slug, String body, Speaker speaker) {
+        this.body = body;
+        this.slug = slug;
+        this.speaker = speaker;
+        this.title = title;
     }
 
-    @Transactional
-    public static Paper upVote(UpVoteValueObject upVoteJson) {
-
-        SessionAbstract sessionAbstract = SessionAbstract.findById(upVoteJson.sessionAbstractId);
-        Reviewer reviewer = Reviewer.findById(upVoteJson.reviewerId);
-        UpVote upVote = new UpVote(sessionAbstract, reviewer);
-        sessionAbstract.addUpVote(upVote);
-        sessionAbstract.persistAndFlush();
-        return new Paper(sessionAbstract);
-    }
-
-    public String getTitle() {
-        return sessionAbstract.getTitle();
-    }
-
-    public String getSlug() {
-        return sessionAbstract.getSlug();
-    }
-
-    public String getBody() {
-        return sessionAbstract.getBody();
-    }
-
-    public Speaker getSpeaker() {
-        return sessionAbstract.getSpeaker();
+    public void voteUp(UpVote upVote) {
+        if (this.votes == null) {
+            this.votes = new ArrayList<UpVote>(){{
+                add(upVote);
+            }};
+        }else{
+            this.votes.add(upVote);
+        }
     }
 
     public int getVotes() {
-        return sessionAbstract.getVotes().size();
+
+        if (this.votes == null) {
+            return 0;
+        }else{
+            return this.votes.size();
+        }
     }
 
+    public String getTitle() {
+
+        return this.title;
+    }
+
+    public String getSlug() {
+        return this.slug;
+    }
+
+    public String getBody() {
+        return this.body;
+    }
+
+    public Speaker getSpeaker() {
+
+        return this.speaker;
+    }
 
     @Override
     public String toString() {
         return "Paper{" +
-                "sessionAbstract=" + sessionAbstract +
+                "title='" + title + '\'' +
+                ", slug='" + slug + '\'' +
+                ", body='" + body + '\'' +
+                ", speaker=" + speaker +
+                ", votes=" + votes +
+                ", id=" + id +
                 '}';
     }
 
@@ -78,16 +90,21 @@ public class Paper {
 
         Paper paper = (Paper) o;
 
-        return sessionAbstract != null ? sessionAbstract.equals(paper.sessionAbstract) : paper.sessionAbstract == null;
+        if (title != null ? !title.equals(paper.title) : paper.title != null) return false;
+        if (slug != null ? !slug.equals(paper.slug) : paper.slug != null) return false;
+        if (body != null ? !body.equals(paper.body) : paper.body != null) return false;
+        if (speaker != null ? !speaker.equals(paper.speaker) : paper.speaker != null) return false;
+        return votes != null ? votes.equals(paper.votes) : paper.votes == null;
     }
 
     @Override
     public int hashCode() {
-        return sessionAbstract != null ? sessionAbstract.hashCode() : 0;
-    }
-
-    public SessionAbstract getSessionAbstract() {
-        return sessionAbstract;
+        int result = title != null ? title.hashCode() : 0;
+        result = 31 * result + (slug != null ? slug.hashCode() : 0);
+        result = 31 * result + (body != null ? body.hashCode() : 0);
+        result = 31 * result + (speaker != null ? speaker.hashCode() : 0);
+        result = 31 * result + (votes != null ? votes.hashCode() : 0);
+        return result;
     }
 
 }

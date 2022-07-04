@@ -1,6 +1,7 @@
 package io.conferencr.infrastructure;
 
 import io.conferencr.domain.Paper;
+import io.conferencr.domain.PaperRepository;
 import io.conferencr.domain.valueobjects.UpVoteValueObject;
 import org.slf4j.Logger;
 
@@ -19,12 +20,14 @@ public class VotingResource {
 
     private static final Logger LOGGER = getLogger(VotingResource.class);
 
+    PaperRepository paperRepository;
+
     @POST@Transactional
     public Response upVote(final UpVoteValueObject upVoteJson) {
 
         LOGGER.debug("up vote received: {}", upVoteJson);
 
-        Paper paper = Paper.upVote(upVoteJson);
+        Paper paper = paperRepository.upVote(upVoteJson);
 
         LOGGER.debug("Paper updated");
 

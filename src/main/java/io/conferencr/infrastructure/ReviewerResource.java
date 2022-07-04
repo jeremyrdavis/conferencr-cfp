@@ -22,7 +22,7 @@ public class ReviewerResource {
     public Response addReviewer(final ReviewerValueObject reviewerJSON) {
 
         LOGGER.debug("reviewerJSON: {}", reviewerJSON);
-        Reviewer reviewer = new Reviewer(reviewerJSON.email);
+        Reviewer reviewer = new Reviewer(reviewerJSON.email());
         reviewer.persist();
         return Response.created(URI.create("/" + reviewer.id)).entity(reviewer).build();
     }

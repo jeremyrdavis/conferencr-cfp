@@ -10,15 +10,15 @@ import javax.persistence.ManyToOne;
 public class UpVote extends PanacheEntity {
 
     @ManyToOne
-    @JoinColumn(name="session_abstract_id", nullable=false)
-    SessionAbstract sessionAbstract;
+    @JoinColumn(name="paper_id", nullable=false)
+    Paper paper;
 
     @ManyToOne
     @JoinColumn(name="reviewer_id", nullable=false)
     Reviewer reviewer;
 
-    protected UpVote(SessionAbstract sessionAbstract, Reviewer reviewer) {
-        this.sessionAbstract = sessionAbstract;
+    protected UpVote(Paper paper, Reviewer reviewer) {
+        this.paper = paper;
         this.reviewer = reviewer;
     }
 
@@ -29,7 +29,7 @@ public class UpVote extends PanacheEntity {
     @Override
     public String toString() {
         return "UpVote{" +
-                "sessionAbstract=" + sessionAbstract +
+                "sessionAbstract=" + paper +
                 ", reviewer=" + reviewer +
                 ", id=" + id +
                 '}';
@@ -42,14 +42,14 @@ public class UpVote extends PanacheEntity {
 
         UpVote upVote = (UpVote) o;
 
-        if (sessionAbstract != null ? !sessionAbstract.equals(upVote.sessionAbstract) : upVote.sessionAbstract != null)
+        if (paper != null ? !paper.equals(upVote.paper) : upVote.paper != null)
             return false;
         return reviewer != null ? reviewer.equals(upVote.reviewer) : upVote.reviewer == null;
     }
 
     @Override
     public int hashCode() {
-        int result = sessionAbstract != null ? sessionAbstract.hashCode() : 0;
+        int result = paper != null ? paper.hashCode() : 0;
         result = 31 * result + (reviewer != null ? reviewer.hashCode() : 0);
         return result;
     }

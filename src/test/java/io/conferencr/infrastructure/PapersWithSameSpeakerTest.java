@@ -1,15 +1,18 @@
 package io.conferencr.infrastructure;
 
 import io.conferencr.domain.Speaker;
+import io.conferencr.domain.SpeakerRepository;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import static io.restassured.RestAssured.given;
@@ -25,11 +28,15 @@ public class PapersWithSameSpeakerTest {
 
     static Speaker speaker;
 
-    @BeforeAll @Transactional
-    public static void setUp() {
+    @Inject
+    SpeakerRepository speakerRepository;
+
+    @BeforeEach
+    @Transactional
+    public void setUp() {
 
         speaker = new Speaker("howard@buzzcocks.com", "Howard", "Devoto");
-        speaker.persist();
+        speakerRepository.persist(speaker);
         LOGGER.info("persisted {}", speaker);
     }
 

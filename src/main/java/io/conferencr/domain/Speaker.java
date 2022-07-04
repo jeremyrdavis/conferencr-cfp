@@ -4,6 +4,8 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Speaker extends PanacheEntity {
@@ -22,11 +24,6 @@ public class Speaker extends PanacheEntity {
     }
 
     public Speaker() {
-    }
-
-    public static Speaker findByEmail(String speakerEmail) {
-
-        return find("email", speakerEmail).firstResult();
     }
 
     @Override
@@ -63,7 +60,7 @@ public class Speaker extends PanacheEntity {
         return email;
     }
 
-    public void setEmail(String email) {
+    void setEmail(String email) {
         this.email = email;
     }
 
@@ -71,7 +68,7 @@ public class Speaker extends PanacheEntity {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
@@ -79,7 +76,15 @@ public class Speaker extends PanacheEntity {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    void setId(Long id) {
+        this.id = id;
     }
 }

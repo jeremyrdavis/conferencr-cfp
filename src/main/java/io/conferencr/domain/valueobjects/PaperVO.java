@@ -1,6 +1,6 @@
 package io.conferencr.domain.valueobjects;
 
-public record SessionAbstractValueObject(
+public record PaperVO(
         String title,
         String slug,
         String body,
