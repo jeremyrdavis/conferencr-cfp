@@ -5,6 +5,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 // Aggregate for Papers
 @Entity
@@ -53,6 +54,10 @@ public class Paper extends PanacheEntity {
         }
     }
 
+    public Optional<Collection<UpVote>> getAllVotes() {
+        return Optional.ofNullable(this.votes);
+    }
+
     public String getTitle() {
 
         return this.title;
@@ -67,9 +72,10 @@ public class Paper extends PanacheEntity {
     }
 
     public Speaker getSpeaker() {
-
         return this.speaker;
     }
+
+
 
     @Override
     public String toString() {
