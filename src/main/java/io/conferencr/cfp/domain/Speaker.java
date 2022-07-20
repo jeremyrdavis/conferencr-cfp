@@ -1,11 +1,9 @@
-package io.conferencr.domain;
+package io.conferencr.cfp.domain;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
 public class Speaker extends PanacheEntity {

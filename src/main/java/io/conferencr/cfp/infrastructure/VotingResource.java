@@ -1,8 +1,8 @@
-package io.conferencr.infrastructure;
+package io.conferencr.cfp.infrastructure;
 
-import io.conferencr.domain.Paper;
-import io.conferencr.domain.PaperRepository;
-import io.conferencr.domain.valueobjects.UpVoteValueObject;
+import io.conferencr.cfp.domain.Paper;
+import io.conferencr.cfp.domain.PaperRepository;
+import io.conferencr.cfp.domain.valueobjects.UpVoteValueObject;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;

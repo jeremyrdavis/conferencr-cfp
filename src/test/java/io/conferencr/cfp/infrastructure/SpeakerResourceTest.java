@@ -1,6 +1,6 @@
-package io.conferencr.infrastructure;
+package io.conferencr.cfp.infrastructure;
 
-import io.conferencr.domain.Speaker;
+import io.conferencr.cfp.domain.Speaker;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Order;

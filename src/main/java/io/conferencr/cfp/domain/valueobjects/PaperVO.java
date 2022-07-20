@@ -1,4 +1,4 @@
-package io.conferencr.domain.valueobjects;
+package io.conferencr.cfp.domain.valueobjects;
 
 public record PaperVO(
         String title,

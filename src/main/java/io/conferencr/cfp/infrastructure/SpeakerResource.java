@@ -1,7 +1,7 @@
-package io.conferencr.infrastructure;
+package io.conferencr.cfp.infrastructure;
 
-import io.conferencr.domain.Speaker;
-import io.conferencr.domain.SpeakerRepository;
+import io.conferencr.cfp.domain.Speaker;
+import io.conferencr.cfp.domain.SpeakerRepository;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;

@@ -1,10 +1,9 @@
-package io.conferencr.infrastructure;
+package io.conferencr.cfp.infrastructure;
 
-import io.conferencr.domain.*;
-import io.conferencr.domain.valueobjects.UpVoteValueObject;
+import io.conferencr.cfp.domain.*;
+import io.conferencr.cfp.domain.valueobjects.UpVoteValueObject;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

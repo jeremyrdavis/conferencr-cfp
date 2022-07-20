@@ -1,4 +1,4 @@
-package io.conferencr.domain;
+package io.conferencr.cfp.domain;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 

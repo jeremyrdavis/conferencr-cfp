@@ -1,10 +1,10 @@
-package io.conferencr.infrastructure;
+package io.conferencr.cfp.infrastructure;
 
-import io.conferencr.domain.Paper;
-import io.conferencr.domain.PaperRepository;
-import io.conferencr.domain.Speaker;
-import io.conferencr.domain.SpeakerRepository;
-import io.conferencr.domain.valueobjects.PaperVO;
+import io.conferencr.cfp.domain.Paper;
+import io.conferencr.cfp.domain.PaperRepository;
+import io.conferencr.cfp.domain.Speaker;
+import io.conferencr.cfp.domain.SpeakerRepository;
+import io.conferencr.cfp.domain.valueobjects.PaperVO;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

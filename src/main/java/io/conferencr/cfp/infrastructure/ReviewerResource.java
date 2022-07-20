@@ -1,7 +1,7 @@
-package io.conferencr.infrastructure;
+package io.conferencr.cfp.infrastructure;
 
-import io.conferencr.domain.Reviewer;
-import io.conferencr.domain.valueobjects.ReviewerValueObject;
+import io.conferencr.cfp.domain.valueobjects.ReviewerValueObject;
+import io.conferencr.cfp.domain.Reviewer;
 import org.slf4j.Logger;
 
 import javax.transaction.Transactional;

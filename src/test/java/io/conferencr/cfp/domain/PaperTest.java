@@ -1,5 +1,9 @@
-package io.conferencr.domain;
+package io.conferencr.cfp.domain;
 
+import io.conferencr.cfp.domain.Paper;
+import io.conferencr.cfp.domain.Reviewer;
+import io.conferencr.cfp.domain.Speaker;
+import io.conferencr.cfp.domain.UpVote;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 

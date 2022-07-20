@@ -1,6 +1,6 @@
-package io.conferencr.domain;
+package io.conferencr.cfp.domain;
 
-import io.conferencr.domain.valueobjects.UpVoteValueObject;
+import io.conferencr.cfp.domain.valueobjects.UpVoteValueObject;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;
