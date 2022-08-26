@@ -1,6 +1,6 @@
 package io.conferencr.cfp.domain.valueobjects;
 
-public record UpVoteValueObject(
+public record UpVoteVO(
         Long paperId,
         Long reviewerId
 ) {}

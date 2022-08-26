@@ -2,7 +2,7 @@ package io.conferencr.cfp.infrastructure;
 
 import io.conferencr.cfp.domain.Paper;
 import io.conferencr.cfp.domain.PaperRepository;
-import io.conferencr.cfp.domain.valueobjects.UpVoteValueObject;
+import io.conferencr.cfp.domain.valueobjects.UpVoteVO;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -25,7 +25,7 @@ public class VotingResource {
     PaperRepository paperRepository;
 
     @POST@Transactional
-    public Response upVote(final UpVoteValueObject upVoteJson) {
+    public Response upVote(final UpVoteVO upVoteJson) {
 
         LOGGER.debug("up vote received: {}", upVoteJson);
 

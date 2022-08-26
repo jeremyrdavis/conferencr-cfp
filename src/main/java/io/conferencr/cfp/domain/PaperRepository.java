@@ -1,6 +1,6 @@
 package io.conferencr.cfp.domain;
 
-import io.conferencr.cfp.domain.valueobjects.UpVoteValueObject;
+import io.conferencr.cfp.domain.valueobjects.UpVoteVO;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 public class PaperRepository implements PanacheRepository<Paper> {
 
     @Transactional
-    public Paper upVote(UpVoteValueObject upVoteJson) {
+    public Paper upVote(UpVoteVO upVoteJson) {
 
         Paper paper = findById(upVoteJson.paperId());
         Reviewer reviewer = Reviewer.findById(upVoteJson.reviewerId());

@@ -1,7 +1,7 @@
 package io.conferencr.cfp.infrastructure;
 
 import io.conferencr.cfp.domain.*;
-import io.conferencr.cfp.domain.valueobjects.UpVoteValueObject;
+import io.conferencr.cfp.domain.valueobjects.UpVoteVO;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeEach;
@@ -57,7 +57,7 @@ public class PaperUpVoteTest {
     @Transactional
     public void testUpvote() {
 
-        UpVoteValueObject upVoteJson = new UpVoteValueObject(paperId, reviewerId);
+        UpVoteVO upVoteJson = new UpVoteVO(paperId, reviewerId);
 
         Response response =
                 given()

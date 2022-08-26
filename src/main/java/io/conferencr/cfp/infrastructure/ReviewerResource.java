@@ -1,6 +1,6 @@
 package io.conferencr.cfp.infrastructure;
 
-import io.conferencr.cfp.domain.valueobjects.ReviewerValueObject;
+import io.conferencr.cfp.domain.valueobjects.ReviewerVO;
 import io.conferencr.cfp.domain.Reviewer;
 import org.slf4j.Logger;
 
@@ -19,7 +19,7 @@ public class ReviewerResource {
     private static final Logger LOGGER = getLogger(ReviewerResource.class);
 
     @POST @Transactional
-    public Response addReviewer(final ReviewerValueObject reviewerJSON) {
+    public Response addReviewer(final ReviewerVO reviewerJSON) {
 
         LOGGER.debug("reviewerJSON: {}", reviewerJSON);
         Reviewer reviewer = new Reviewer(reviewerJSON.email());
