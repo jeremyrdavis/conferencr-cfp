@@ -1,4 +1,7 @@
 package io.converencr.agenda.domain;
 
-public record BirdsOfAFeather() {
+import javax.persistence.Entity;
+
+@Entity
+class Bir{
 }
