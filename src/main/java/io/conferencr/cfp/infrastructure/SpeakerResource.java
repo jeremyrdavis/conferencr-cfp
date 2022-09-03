@@ -1,6 +1,6 @@
 package io.conferencr.cfp.infrastructure;
 
-import io.conferencr.cfp.domain.Speaker;
+import io.conferencr.domain.Speaker;
 import io.conferencr.cfp.domain.SpeakerRepository;
 import org.slf4j.Logger;
 

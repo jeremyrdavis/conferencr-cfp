@@ -1,14 +1,10 @@
 package io.conferencr.cfp.domain;
 
-import io.conferencr.cfp.domain.Paper;
-import io.conferencr.cfp.domain.Reviewer;
-import io.conferencr.cfp.domain.Speaker;
-import io.conferencr.cfp.domain.UpVote;
+import io.conferencr.domain.Speaker;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
 import javax.transaction.Transactional;
-
 import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,7 +32,7 @@ public class PaperTest {
         Paper paper = new Paper(
                 "A Book Report",
                 "To Kill a Mockingbird is a great book",
-                "During his first five years in Maycomb, Atticus practiced economy more than anything; for several years thereafter he invested his earningsin his brother's education.",
+                "During his first five years in Maycomb, Atticus practiced economy more than anything; for several years thereafter he invested his earnings in his brother's education.",
                 speaker
         );
 

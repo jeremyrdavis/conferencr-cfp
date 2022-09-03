@@ -1,5 +1,6 @@
 package io.conferencr.cfp.domain;
 
+import io.conferencr.domain.Speaker;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.*;

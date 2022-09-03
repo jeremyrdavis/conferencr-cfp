@@ -2,7 +2,7 @@ package io.conferencr.cfp.infrastructure;
 
 import io.conferencr.cfp.domain.Paper;
 import io.conferencr.cfp.domain.PaperRepository;
-import io.conferencr.cfp.domain.Speaker;
+import io.conferencr.domain.Speaker;
 import io.conferencr.cfp.domain.SpeakerRepository;
 import io.conferencr.cfp.domain.valueobjects.PaperVO;
 import org.slf4j.Logger;

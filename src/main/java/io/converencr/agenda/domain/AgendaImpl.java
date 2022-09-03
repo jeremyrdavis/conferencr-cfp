@@ -10,7 +10,7 @@ import java.util.List;
 public class AgendaImpl extends PanacheEntity implements Agenda {
 
     @OneToMany
-    List<Session> sessions;
+    protected List<Session> sessions;
 
     public AgendaImpl(List<Session> sessions) {
         this.sessions = sessions;

@@ -1,10 +1,9 @@
 package io.conferencr.cfp.infrastructure;
 
 import io.conferencr.cfp.domain.Paper;
-import io.conferencr.cfp.domain.Speaker;
+import io.conferencr.domain.Speaker;
 import io.conferencr.cfp.domain.SpeakerRepository;
 import io.conferencr.cfp.domain.valueobjects.PaperVO;
-import io.conferencr.cfp.infrastructure.PaperService;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
