@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Agenda extends PanacheEntity {
+class Agenda extends PanacheEntity {
 
     private String eventName;
 
