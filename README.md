@@ -1,4 +1,6 @@
-# conferencr-cfp Project
+# conferencr Project
+
+JDK 17
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
