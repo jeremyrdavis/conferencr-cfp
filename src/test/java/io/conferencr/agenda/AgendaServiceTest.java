@@ -38,7 +38,7 @@ public class AgendaServiceTest {
     @Test
     public void testAddingSession() {
 
-        SessionAddedEvent sessionAddedEvent = agendaService.addSession(1L,
+        SessionAddedResult sessionAddedResult = agendaService.addSession(1L,
                 new SessionRecord(
                 SESSION_TITLE,
                 SESSION_SLUG,
@@ -48,10 +48,17 @@ public class AgendaServiceTest {
                 }}
         ));
 
+        AgendaUpdatedEvent agendaUpdatedEvent = sessionAddedResult.agendaUpdatedEvent();
+        SessionAddedEvent sessionAddedEvent = sessionAddedResult.sessionAddedEvent();
+
         assertNotNull(sessionAddedEvent);
-        assertEquals(SESSION_TITLE, sessionAddedEvent.sessionTitle());
-        assertEquals(SESSION_SLUG, sessionAddedEvent.sessionSlug());
-        assertEquals(SESSION_DESCRIPTION, sessionAddedEvent.sessionDescription());
-        assertEquals(PRESENTER_EMAIL, sessionAddedEvent.presenters().get(0).email());
+        assertNotNull(sessionAddedResult);
+
+        Agenda agenda = agendaRepository.findById(agendaId);
+        assertEquals(1, agenda.getEventSessions().size());
+        assertEquals(SESSION_TITLE, agenda.getEventSessions().get(0).getTitle());
+        assertEquals(SESSION_SLUG, agenda.getEventSessions().get(0).getSlug());
+        assertEquals(SESSION_DESCRIPTION, agenda.getEventSessions().get(0).getDescription());
+        assertEquals(PRESENTER_EMAIL, agenda.getEventSessions().get(0).getPresenters().get(0).getEmail());
     }
 }

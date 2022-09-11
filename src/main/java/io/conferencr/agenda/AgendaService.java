@@ -21,7 +21,7 @@ public class AgendaService {
     AgendaRepository agendaRepository;
 
     @Transactional
-    public SessionAddedEvent addSession(Long id, SessionRecord sessionRecord) {
+    public SessionAddedResult addSession(Long id, SessionRecord sessionRecord) {
 
         LOGGER.debug("adding: {} for Agenda: {}", sessionRecord, id);
 
@@ -49,11 +49,14 @@ public class AgendaService {
         agenda.addEventSession(eventSession);
         agenda.persist();
 
-        return new SessionAddedEvent(
+        AgendaUpdatedEvent agendaUpdatedEvent = new AgendaUpdatedEvent(
                 sessionRecord.title(),
-                sessionRecord.slug(),
-                sessionRecord.description(),
-                sessionRecord.presenters());
+                sessionRecord.presenters()
+        );
+
+        SessionAddedEvent sessionAddedEvent = new SessionAddedEvent(sessionRecord);
+
+        return new SessionAddedResult(agendaUpdatedEvent, sessionAddedEvent);
     }
 
     private List<Presenter> hydratePresenters(final List<PresenterRecord> presenterRecords) {

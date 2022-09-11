@@ -27,4 +27,20 @@ public class EventSession extends PanacheEntity {
         this.description = description;
         this.presenters = presenters;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<Presenter> getPresenters() {
+        return presenters;
+    }
 }
