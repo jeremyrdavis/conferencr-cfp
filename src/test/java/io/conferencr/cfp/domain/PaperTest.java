@@ -1,6 +1,5 @@
 package io.conferencr.cfp.domain;
 
-import io.conferencr.domain.Speaker;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 

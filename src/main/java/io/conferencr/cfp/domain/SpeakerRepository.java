@@ -1,6 +1,5 @@
 package io.conferencr.cfp.domain;
 
-import io.conferencr.domain.Speaker;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;
