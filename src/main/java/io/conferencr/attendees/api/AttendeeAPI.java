@@ -1,6 +1,10 @@
 package io.conferencr.attendees.api;
 
+import java.util.List;
+
 public interface AttendeeAPI {
 
-    public void registerAttendee(AttendeeRecord attendeeRecord);
+    public AttendeeRecord registerAttendee(AttendeeRecord attendeeRecord);
+
+    List<AttendeeRecord> listAttendees();
 }
