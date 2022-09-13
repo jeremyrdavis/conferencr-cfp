@@ -22,7 +22,7 @@ public class AttendeeResourceTest {
 
     @Test
     @Order(2)
-    public void testGetAbstracts() {
+    public void testGetAttendees() {
 
         Response response = given()
                 .header("Content-Type", "application/json")
@@ -32,6 +32,7 @@ public class AttendeeResourceTest {
                 .extract().response();
 
         assertEquals(200, response.statusCode());
+        assertEquals(ATTENDEE_EMAIL, response.jsonPath().getString("email[0]"));
     }
 
     @Test @Order(1)
