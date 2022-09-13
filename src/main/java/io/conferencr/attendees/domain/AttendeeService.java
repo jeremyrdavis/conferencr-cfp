@@ -27,13 +27,13 @@ public class AttendeeService implements AttendeeAPI {
         Attendee attendee = new Attendee(attendeeRecord.email());
         attendee.persist();
         LOGGER.debug("persisted: {}", attendee);
-        return new AttendeeRecord(attendee.id, attendee.getEmail());
+        return new AttendeeRecord(attendee.id, attendee.email);
     }
 
     @Override
     public List<AttendeeRecord> listAttendees() {
         return attendeeRepository.listAll().stream().map(attendee -> {
-            return new AttendeeRecord(attendee.id, attendee.getEmail());
+            return new AttendeeRecord(attendee.id, attendee.email);
         }).collect(Collectors.toList());
     }
 }

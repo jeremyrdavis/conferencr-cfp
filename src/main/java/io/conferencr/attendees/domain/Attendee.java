@@ -6,14 +6,16 @@ import javax.persistence.Entity;
 import java.util.Objects;
 
 @Entity
-public class Attendee extends PanacheEntity {
+class Attendee extends PanacheEntity {
 
-    private String email;
-    protected Attendee(final String email) {
+    String email;
+
+    Attendee(final String email) {
         this.email = email;
     }
 
-    protected Attendee() {
+    Attendee() {
+
     }
 
     @Override
@@ -36,11 +38,4 @@ public class Attendee extends PanacheEntity {
         return Objects.hash(email);
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    protected void setEmail(final String email) {
-        this.email = email;
-    }
 }

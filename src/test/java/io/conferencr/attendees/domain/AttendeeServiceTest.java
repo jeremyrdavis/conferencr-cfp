@@ -1,8 +1,6 @@
-package io.conferencr.attendee.domain;
+package io.conferencr.attendees.domain;
 
 import io.conferencr.attendees.api.AttendeeRecord;
-import io.conferencr.attendees.domain.Attendee;
-import io.conferencr.attendees.domain.AttendeeService;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -27,7 +25,7 @@ public class AttendeeServiceTest {
 
         assertEquals(1, Attendee.count());
         Attendee attendee = (Attendee) Attendee.listAll().get(0);
-        assertEquals(attendeeRecord.email(), attendee.getEmail());
+        assertEquals(attendeeRecord.email(), attendee.email);
     }
 
     @Test @Order(2)

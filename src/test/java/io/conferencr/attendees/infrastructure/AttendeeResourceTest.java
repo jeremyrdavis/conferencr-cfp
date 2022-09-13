@@ -1,4 +1,4 @@
-package io.conferencr.attendee.infrastructure;
+package io.conferencr.attendees.infrastructure;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @QuarkusTest
@@ -32,7 +33,7 @@ public class AttendeeResourceTest {
                 .extract().response();
 
         assertEquals(200, response.statusCode());
-        assertEquals(ATTENDEE_EMAIL, response.jsonPath().getString("email[0]"));
+        assertTrue(response.jsonPath().getString("email").contains(ATTENDEE_EMAIL));
     }
 
     @Test @Order(1)

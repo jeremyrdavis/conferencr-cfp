@@ -1,10 +1,13 @@
 package io.conferencr.agenda;
 
+import io.conferencr.cfp.domain.Speaker;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AgendaTest {
 
@@ -22,5 +25,22 @@ public class AgendaTest {
         ));
 
         assertEquals(1, agenda.getEventSessions().size());
+    }
+
+    @Test
+    public void testAddEventSession() {
+
+        Agenda agenda = new Agenda("Test event");
+        EventSession eventSession = new EventSession(
+                "Test title",
+                "Test slug",
+                "Test description",
+                Collections.singletonList(new Presenter("james.kirk@enterprise.mil"))
+        );
+
+        agenda.addEventSession(eventSession);
+        assertEquals(1, agenda.getEventSessions().size());
+        assertEquals(eventSession, agenda.getEventSessions().get(0));
+
     }
 }

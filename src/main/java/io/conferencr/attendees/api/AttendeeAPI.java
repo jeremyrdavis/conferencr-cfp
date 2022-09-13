@@ -6,5 +6,5 @@ public interface AttendeeAPI {
 
     public AttendeeRecord registerAttendee(AttendeeRecord attendeeRecord);
 
-    List<AttendeeRecord> listAttendees();
+    public List<AttendeeRecord> listAttendees();
 }

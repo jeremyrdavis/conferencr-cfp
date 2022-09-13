@@ -59,4 +59,17 @@ public class PaperTest {
         assertTrue(upVotes.contains(upVote2));
     }
 
+    @Test
+    public void testHashCode() {
+        Speaker speaker = new Speaker("calpurnia@mockingbird.com", "Calpurnia", "Coleman");
+        Paper paper1 = new Paper("Presentation1", "The first presentation", "A really great presentation", speaker);
+        Paper paper2 = new Paper("Presentation2", "The second presentation", "Also really great presentation", speaker);
+        Paper paper3 = new Paper("Presentation1", "The first presentation", "A really great presentation", speaker);
+
+        assertNotEquals(paper1.hashCode(), paper2.hashCode());
+        assertEquals(paper1.hashCode(), paper3.hashCode());
+        assertTrue(paper1.equals(paper3));
+        assertFalse(paper1.equals(paper2));
+    }
+
 }
