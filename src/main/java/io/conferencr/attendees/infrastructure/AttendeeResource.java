@@ -18,7 +18,6 @@ import java.util.List;
 public class AttendeeResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AttendeeResource.class);
-
     @Inject
     AttendeeAPI attendeeAPI;
 
