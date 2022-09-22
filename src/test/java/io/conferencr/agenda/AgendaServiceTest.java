@@ -71,6 +71,7 @@ public class AgendaServiceTest {
 
         agendaService.addSession(
                 new SessionRecord(
+                null,
                 SESSION_TITLE,
                 SESSION_SLUG,
                 SESSION_DESCRIPTION,

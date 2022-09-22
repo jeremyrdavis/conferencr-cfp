@@ -27,7 +27,8 @@ public class AgendaResource {
     public Response addSession(final SessionRecord sessionRecordToAdd) {
 
         LOGGER.debug("adding session: {}", sessionRecordToAdd);
-        agendaService.addSession(sessionRecordToAdd);
-        return Response.created(URI.create("/")).build();
+        SessionRecord sessionRecord = agendaService.addSession(sessionRecordToAdd);
+        LOGGER.debug("added session: {}", sessionRecord);
+        return Response.created(URI.create("/sessions/" + sessionRecord.id())).entity(sessionRecord).build();
     }
 }

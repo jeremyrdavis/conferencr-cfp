@@ -27,7 +27,7 @@ public class AgendaService {
     EventBus eventBus;
 
     @Transactional
-    void addSession(SessionRecord sessionRecord) {
+    SessionRecord addSession(SessionRecord sessionRecord) {
 
         LOGGER.debug("adding: {} for Agenda: {}", sessionRecord);
 
@@ -64,6 +64,14 @@ public class AgendaService {
 
         eventBus.publish(DomainEvents.AGENDA_UPDATED, JsonMapper.toJson(agendaUpdatedEvent));
         eventBus.publish(DomainEvents.SESSION_ADDED, JsonMapper.toJson(sessionAddedEvent));
+        return new SessionRecord(
+                eventSession.id,
+                eventSession.getTitle(),
+                eventSession.getSlug(),
+                eventSession.getDescription(),
+                eventSession.getPresenters().stream().map(presenter -> {
+                    return new PresenterRecord(presenter.getEmail());
+                }).collect(Collectors.toList()));
     }
 
     private List<Presenter> hydratePresenters(final List<PresenterRecord> presenterRecords) {

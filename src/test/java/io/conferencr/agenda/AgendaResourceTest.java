@@ -1,6 +1,5 @@
 package io.conferencr.agenda;
 
-import io.conferencr.agenda.api.DomainEvents;
 import io.conferencr.agenda.api.PresenterRecord;
 import io.conferencr.agenda.api.SessionRecord;
 import io.quarkus.test.junit.QuarkusTest;
@@ -39,7 +38,7 @@ public class AgendaResourceTest {
     @Test
     public void testAddingSession() {
 
-        SessionRecord sessionRecord = new SessionRecord(
+        SessionRecord sessionRecord = new SessionRecord(null,
                 "Test title",
                 "Test slug",
                 "A test presentation.",
@@ -61,7 +60,8 @@ public class AgendaResourceTest {
         LOGGER.info("response: {}", response.asString());
 
         assertEquals(201, response.statusCode());
-        assertEquals(sessionRecord.presenters().get(0).email(), response.jsonPath().getString("email[0]"));
+        LOGGER.info("received json: {}", response.jsonPath().prettyPrint());
+        assertEquals(sessionRecord.presenters().get(0).email(), response.jsonPath().getString("presenters[0].email"));
 
     }
 }
