@@ -12,6 +12,8 @@ class Agenda extends PanacheEntity {
 
     private String eventName;
 
+    private boolean published;
+
     @OneToMany
     private List<EventSession> eventSessions;
 
@@ -30,13 +32,16 @@ class Agenda extends PanacheEntity {
     }
 
     public void addEventSession(EventSession eventSession) {
-        if (this.eventSessions == null) {
-            this.eventSessions = new ArrayList<>(){{
-                add(eventSession);
-            }};
-        }else {
-            this.eventSessions.add(eventSession);
+        if(!this.published){
+            if (this.eventSessions == null) {
+                this.eventSessions = new ArrayList<>(){{
+                    add(eventSession);
+                }};
+            }else {
+                this.eventSessions.add(eventSession);
+            }
         }
+        if(this.eventSessions.size() == 8) this.published = true;
     }
 
     public String getEventName() {
@@ -48,5 +53,9 @@ class Agenda extends PanacheEntity {
             this.eventSessions = new ArrayList<>();
         }
         return eventSessions;
+    }
+
+    public boolean isPublished() {
+        return published;
     }
 }

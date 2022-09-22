@@ -17,9 +17,9 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @QuarkusTest
-public class AgendaResourceTest {
+public class AgendaResourceTestSessionAdded {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AgendaResourceTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AgendaResourceTestSessionAdded.class);
 
     @Inject
     AgendaRepository agendaRepository;

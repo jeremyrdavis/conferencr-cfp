@@ -1,6 +1,5 @@
 package io.conferencr.agenda;
 
-import io.conferencr.cfp.domain.Speaker;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AgendaTest {
+public class AgendaTestAddSession {
 
     @Test
     public void testUpdateAgenda() {
