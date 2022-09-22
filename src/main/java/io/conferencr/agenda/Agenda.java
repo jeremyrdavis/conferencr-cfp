@@ -24,7 +24,7 @@ class Agenda extends PanacheEntity {
         this.eventName = eventName;
     }
 
-    public static Agenda createForEvent(final String eventName) {
+    protected static Agenda createForEvent(final String eventName) {
 
         return new Agenda(eventName);
     }
@@ -44,6 +44,9 @@ class Agenda extends PanacheEntity {
     }
 
     public List<EventSession> getEventSessions() {
+        if (this.eventSessions == null) {
+            this.eventSessions = new ArrayList<>();
+        }
         return eventSessions;
     }
 }

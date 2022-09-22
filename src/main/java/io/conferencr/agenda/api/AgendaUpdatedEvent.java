@@ -1,4 +1,6 @@
-package io.conferencr.agenda;
+package io.conferencr.agenda.api;
+
+import io.conferencr.agenda.api.PresenterRecord;
 
 import java.util.List;
 

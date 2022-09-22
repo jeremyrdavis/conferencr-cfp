@@ -1,5 +1,8 @@
 package io.conferencr.agenda;
 
+import io.conferencr.JsonMapper;
+import io.conferencr.agenda.api.*;
+import io.vertx.core.eventbus.EventBus;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -20,10 +23,13 @@ public class AgendaService {
     @Inject
     AgendaRepository agendaRepository;
 
-    @Transactional
-    public SessionAddedResult addSession(Long id, SessionRecord sessionRecord) {
+    @Inject
+    EventBus eventBus;
 
-        LOGGER.debug("adding: {} for Agenda: {}", sessionRecord, id);
+    @Transactional
+    void addSession(SessionRecord sessionRecord) {
+
+        LOGGER.debug("adding: {} for Agenda: {}", sessionRecord);
 
         List<Presenter> presenters = hydratePresenters(sessionRecord.presenters());
         presenters.forEach(presenter -> {
@@ -45,7 +51,7 @@ public class AgendaService {
 
         eventSession.persist();
 
-        Agenda agenda = agendaRepository.findById(id);
+        Agenda agenda = agendaRepository.listAll().get(0);
         agenda.addEventSession(eventSession);
         agenda.persist();
 
@@ -56,7 +62,8 @@ public class AgendaService {
 
         SessionAddedEvent sessionAddedEvent = new SessionAddedEvent(sessionRecord);
 
-        return new SessionAddedResult(agendaUpdatedEvent, sessionAddedEvent);
+        eventBus.publish(DomainEvents.AGENDA_UPDATED, JsonMapper.toJson(agendaUpdatedEvent));
+        eventBus.publish(DomainEvents.SESSION_ADDED, JsonMapper.toJson(sessionAddedEvent));
     }
 
     private List<Presenter> hydratePresenters(final List<PresenterRecord> presenterRecords) {
@@ -67,11 +74,6 @@ public class AgendaService {
             LOGGER.debug("created {}", presenter);
             presenters.add(presenter);
         });
-//        List<Presenter> presenters = presenterRecords.stream()
-//                .map(presenterRecord -> {
-//                    return new Presenter(presenterRecord.email());
-//                }).collect(Collectors.toList());
-//        LOGGER.debug("hydrated: {}", presenters);
         return presenters;
     }
 }
